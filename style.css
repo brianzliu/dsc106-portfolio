@@ -95,6 +95,50 @@ form button {
 
 .projects article h2 {
   margin: 0;
+  font-weight: normal;
+}
+
+#profile-stats {
+  display: flex;
+  gap: 1px;
+  background: oklch(50% 10% 200 / 20%);
+  border: 1px solid oklch(50% 10% 200 / 30%);
+  border-radius: 0.75em;
+  overflow: hidden;
+  margin-block: 1em;
+}
+
+#profile-stats .stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.2em 0.5em;
+  background: canvas;
+  gap: 0.2em;
+  transition: background 0.2s;
+}
+
+#profile-stats .stat:hover {
+  background: color-mix(in oklch, var(--color-accent), canvas 88%);
+}
+
+#profile-stats .stat-value {
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+#profile-stats .stat-label {
+  font-size: 0.75em;
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+img + h2 {
+  margin-top: 2em;
 }
 
 h1 {
