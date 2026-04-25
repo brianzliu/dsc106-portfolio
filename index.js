@@ -1,8 +1,7 @@
-import { fetchJSON, renderProjects, fetchGithubData } from './global.js';
-
+import { fetchJSON, renderProjects, fetchGithubData, PROJECTS_JSON_URL } from './global.js';
 
 // dynamically rendering 3 latest projects
-const projects = await fetchJSON('./lib/projects.json');
+const projects = (await fetchJSON(PROJECTS_JSON_URL)) ?? [];
 const latestProjects = projects.slice(0, 3);
 
 const projectsContainer = document.querySelector('.projects');
@@ -15,7 +14,7 @@ const profileStats = document.querySelector('#profile-stats');
 
 const githubData = await fetchGithubData('brianzliu');
 
-if (profileStats) {
+if (profileStats && githubData) {
     const stats = [
         { label: 'Public Repos', value: githubData.public_repos },
         { label: 'Public Gists', value: githubData.public_gists },

@@ -6,9 +6,13 @@ function $$(selector, context = document) {
 
 
 
-const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
-  ? "/"
-  : "/dsc106-portfolio/";
+// Site root URL (trailing slash). Derived from this script so it works on GitHub Pages
+// for any repo name, and avoids broken relative fetches when the page URL has no
+// trailing slash (e.g. /repo-name vs /repo-name/).
+const BASE_PATH = new URL('./', import.meta.url).href;
+
+// JSON is always next to this file at lib/projects.json; do not use page-relative paths.
+export const PROJECTS_JSON_URL = new URL('lib/projects.json', import.meta.url).href;
 
 let pages = [
     { url: '', title: 'Home' },
@@ -26,7 +30,7 @@ for (let p of pages) {
   let title = p.title;
 
   if (!url.startsWith('http')) {
-    url = BASE_PATH + url;
+    url = new URL(url, BASE_PATH).href;
   }
 
   let a = document.createElement('a');
@@ -75,10 +79,9 @@ if ("colorScheme" in localStorage) {
 
   
 // dynamically change project data content from JSON
-export async function fetchJSON(url) {
+export async function fetchJSON(url, init) {
   try {
-    // Fetch the JSON file from the given URL
-    const response = await fetch(url);
+    const response = await fetch(url, init);
 
     if (!response.ok) {
       throw new Error(`Failed to fetch projects: ${response.statusText}`);
@@ -109,7 +112,9 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
 }
 
 export function fetchGithubData(username) {
-  return fetchJSON(`https://api.github.com/users/${username}`);
+  return fetchJSON(`https://api.github.com/users/${username}`, {
+    headers: { Accept: 'application/vnd.github+json' },
+  });
 }
 
 
