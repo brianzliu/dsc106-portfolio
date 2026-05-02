@@ -1,62 +1,74 @@
 [
     {
-      "title": "Lorem ipsum dolor sit.",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam commodi obcaecati libero dicta ea fugit quidem, autem sunt incidunt excepturi quis! Nemo corrupti doloribus tenetur doloremque possimus magnam molestias eligendi."
+        "title": "Project 2: Persuasive or Deceptive Visualization?",
+        "year": 2026,
+        "image": "../images/proposition1b.png",
+        "description": "This project explores the boundaries of ethical data visualization by creating two opposing charts based on the same dataset regarding the NYPD stop-and-frisk policy. We utilized various persuasive and deceptive design tactics to demonstrate how charts can manipulate interpretation either for or against a proposition. Ultimately, the project highlights the ethical responsibility of designers to present data without distortion."
     },
     {
-      "title": "Sit hic aliquid enim?",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Atque molestiae sapiente vel quam, fugit dicta suscipit doloremque molestias! Dolor, possimus similique aspernatur odio necessitatibus beatae fugit cumque consequatur. Aliquam mollitia, corporis obcaecati debitis illo veniam temporibus assumenda ab?"
+        "title": "Project 1: Food Processing Score",
+        "year": 2026,
+        "image": "../images/Screenshot 2026-05-01 at 9.58.52\u202fPM.png",
+        "description": "This visualization highlights the distribution of food processing scores (FPro) across Target, Walmart, and Whole Foods to reveal differences in inventory healthfulness. By combining violin plots with box plots and color-coded gradients, the design clearly contrasts the predictable, highly processed selections of Walmart and Target against Whole Foods' varied offerings. It provides an intuitive, macro-level view of product category differences among major retailers."
     },
     {
-      "title": "Blanditiis accusamus tempore similique.",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Dolores non veritatis, nam repudiandae esse nulla a nihil soluta totam atque autem doloremque dolorem repellendus iure. Adipisci placeat explicabo ab eligendi nam blanditiis eius! At eaque culpa earum dolores."
+        "title": "Predicting Google Play Store Rankings",
+        "year": 2026,
+        "image": "../images/cogs108.png",
+        "description": "This data science project examines the quantitative factors\u2014such as total ratings, installs, and growth rates\u2014that predict a mobile game's rank within genre-specific Top 100 charts on the Google Play Store. The team performed extensive data cleaning and utilized machine learning models like SVM and Random Forest regressors to identify ranking patterns. The analysis revealed that overall rank is most strongly associated with engagement volume metrics, providing valuable insights for game developers seeking to improve discoverability."
     },
     {
-      "title": "Aliquid veniam velit maiores!",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Commodi ad cupiditate tempora possimus ipsam eum, voluptas nisi tenetur esse. Fugit, praesentium. Esse amet commodi illo ipsam nam quam velit quod ea explicabo, temporibus sit minima voluptatem possimus adipisci!"
+        "title": "blueprint",
+        "year": 2026,
+        "image": "../images/blueprint.png",
+        "description": "blueprint is an interactive code editor extension that helps developers visualize and understand any codebase at multiple scales using expandable knowledge graphs. It uses AI compression models to trace dependencies, summarize features, and proactively identify vulnerabilities before changes are made. By making code relationships visually accessible, the tool brings trust and scale to modern AI-assisted vibe engineering."
     },
     {
-      "title": "Saepe ducimus culpa voluptas.",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Velit obcaecati perspiciatis qui quia laboriosam totam, enim cumque incidunt perferendis doloribus facere corrupti cupiditate, dolores commodi voluptatibus sint facilis vero quisquam et impedit fugit mollitia maiores praesentium. Saepe, consequatur!"
+        "title": "CiteTrace",
+        "year": 2025,
+        "image": "../images/citetrace.jpg",
+        "description": "CiteTrace transforms large collections of research papers into interactive knowledge graphs, allowing users to intuitively visualize and interpret complex academic relationships. The platform features an end-to-end RAG pipeline and similarity-scoring models to help researchers dive deep into document connections and discover hidden themes. By making research landscapes navigable at a glance, it significantly streamlines the literature review process."
     },
     {
-      "title": "Libero incidunt sit ad.",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Commodi earum quidem ipsa molestias explicabo, aliquam asperiores quo optio, rem veritatis soluta dolorem error consequatur vel, eveniet maxime deserunt voluptates? Odit magnam doloribus accusamus! Architecto placeat officia accusamus cumque!"
+        "title": "Bouncer",
+        "year": 2025,
+        "image": "../images/bouncer.png",
+        "description": "Bouncer is an AI-powered consumer risk assessment tool that provides business owners with intelligent access control using publicly available information. By integrating deep search APIs with Claude and Gemini models, the platform generates safe, thoroughly explained risk-level summaries while reducing bias. It demonstrates how public data can be ethically leveraged for social good through a visually pleasing and secure user management dashboard."
     },
     {
-      "title": "Placeat quasi expedita fugiat.",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Ratione ex alias nostrum saepe magnam hic numquam animi sed consectetur iure maxime error sint facilis quae reprehenderit reiciendis nisi dolor doloribus, maiores, delectus, asperiores inventore consequuntur quisquam! Esse, optio!"
+        "title": "PillSnap",
+        "year": 2025,
+        "image": "../images/pillsnap.png",
+        "description": "PillSnap is a mobile-friendly web application that allows users to snap a photo of any pill to accurately identify it and access up-to-date FDA drug information. Leveraging a fine-tuned Gemini API and live data scraping, the app provides critical warnings about potential drug and food interactions. It empowers patients\u2014especially the elderly and disabled\u2014to safely manage multiple medications and avoid dangerous misuse."
     },
     {
-      "title": "Id debitis totam sed.",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Delectus debitis commodi, qui et inventore omnis iure aperiam sit numquam iste, autem exercitationem veniam id beatae saepe ipsum eveniet vero. Dolorem nemo error provident! Iste, eaque sapiente? Labore, porro?"
+        "title": "CARP (Catch, Analyze, Record, & Profit)",
+        "year": 2025,
+        "image": "../images/carp.png",
+        "description": "CARP is a comprehensive platform designed to optimize the fishing value chain using AI-powered insights, an interactive fish location map, and real-time market analysis. Leveraging a Gemini-powered chatbot, algorithmic fish ranking, and browser-use agents, the app helps fishers maximize profit by analyzing over 50,000 data points across 5,700 species. Additionally, the system includes a dual-purpose health tracker and brace to monitor carpal tunnel indicators, ensuring user well-being while fishing."
     },
     {
-      "title": "Cum omnis similique itaque!",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Beatae nemo officia fuga laboriosam pariatur, rerum quis expedita veniam saepe magnam distinctio nobis consectetur impedit earum assumenda aut ut cupiditate inventore est sit. Corporis numquam praesentium eaque culpa iste!"
+        "title": "Efficient optimization of COHERENT detector design parameters with RESUM",
+        "year": 2025,
+        "image": "../images/resum.png",
+        "description": "This study introduces the Rare Event Surrogate Model (RESUM) to optimize shielding configurations for the COH-Ar-750 detector. By integrating a Conditional Neural Process with a Multi-Fidelity Gaussian Process, RESUM significantly reduces the need for computationally expensive Monte Carlo simulations when predicting neutron background rates. The surrogate model achieves high predictive accuracy while requiring over 70% less simulation data, offering an efficient tool for rare event search experiments."
     },
     {
-      "title": "Autem ea deserunt quisquam?",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Cum obcaecati et optio porro laborum dolor nostrum quae enim dolores temporibus illum animi ex itaque ducimus, necessitatibus non. Harum officia doloribus veniam sint mollitia sapiente commodi est aspernatur aut!"
+        "title": "Assistive Eyewear for Crosswalk Navigation",
+        "year": 2023,
+        "image": "../images/headwear.png",
+        "description": "This project integrates the YOLOv4-tiny object detection model with a custom Raspberry Pi-powered eyewear apparatus to assist legally blind individuals with crosswalk navigation. By identifying crosswalk markers, traffic signals, and vehicles, the system provides real-time audio feedback to help users safely navigate intersections. Evaluated using the System Usability Scale, the affordable prototype demonstrates how lightweight deep learning models can be effectively deployed on edge devices to improve accessibility."
     },
     {
-      "title": "Debitis aperiam quae sapiente?",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Voluptates nemo magni dolore labore cupiditate culpa laudantium dolor dolorem mollitia. Impedit perspiciatis, officiis unde pariatur, debitis ullam ipsam ab architecto alias quam iure sapiente ipsa, eveniet dolores cupiditate magnam."
+        "title": "Fake News Identification via CNN-RNN",
+        "year": 2022,
+        "image": "../images/fakenews.png",
+        "description": "This study advances deep learning solutions for fake news detection by combining a CNN-RNN text classifier with a complementary URL feature classifier. The hybrid model was trained and evaluated on multiple datasets, achieving high accuracies across general and COVID-19 news categories. An interactive graphical user interface (GUI) was also developed using Python Dash to make these advanced fact-checking tools accessible to the general public."
     },
     {
-      "title": "Voluptass quas voluptatibus veniam!",
-      "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-      "description": "Recusandae, numquam asperiores sed quas similique nemo tempore iure. Aspernatur magnam tempore autem, inventore quibusdam consectetur perspiciatis, voluptatem voluptates architecto vel odit unde culpa rem cupiditate in. Recusandae, accusantium. Reiciendis."
+        "title": "Diagnosing Knee Injuries in MRI Scans",
+        "year": 2021,
+        "image": "../images/kneemri.png",
+        "description": "This research project investigates the use of convolutional neural networks to automate the diagnosis of knee injuries, such as ACL and meniscal tears, from MRI scans. Using TensorFlow and the RetinaNet object detection model, the system is trained on extensive MRI datasets to identify abnormalities and reduce human diagnostic errors. Ultimately, the automated approach aims to prioritize high-risk patients and provide a reliable, unbiased tool to assist radiologists in clinical decision-making."
     }
 ]
