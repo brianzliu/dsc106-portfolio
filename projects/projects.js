@@ -88,18 +88,18 @@ function filterAndRenderProjects() {
   projectsTitleContainer.innerHTML = `${filteredProjects.length} Projects`;
 }
 
-// Initial render
+
 renderPieChart(projects);
 filterAndRenderProjects();
 
 let searchInput = document.querySelector('.searchBar');
-searchInput.addEventListener('input', (event) => { // using input for real-time
+searchInput.addEventListener('input', (event) => { 
   query = event.target.value;
   let filteredByQuery = projects.filter((project) => {
       let values = Object.values(project).join('\n').toLowerCase();
       return values.includes(query.toLowerCase());
   });
-  // Render pie chart with search-filtered data
+
   renderPieChart(filteredByQuery);
   filterAndRenderProjects();
 });

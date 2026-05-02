@@ -103,9 +103,13 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
   for (const project of projects) {
     const article = document.createElement('article');
 
+    // The image paths in projects.json might be relative to the projects folder (e.g. '../images/...')
+    const url = project.image.startsWith('../') ? project.image.substring(3) : project.image;
+    const projectImageUrl = new URL(url, BASE_PATH).href;
+
     article.innerHTML = `
       <${headingLevel}>${project.title}</${headingLevel}>
-      <img src="${project.image}" alt="${project.title}">
+      <img src="${projectImageUrl}" alt="${project.title}">
       <div>
         <p>${project.description}</p>
         <p class="project-year">c. ${project.year}</p>
