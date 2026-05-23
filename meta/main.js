@@ -50,54 +50,38 @@ function processCommits(data) {
 function renderCommitInfo(data, commits) {
   const dl = d3.select('#stats').append('dl').attr('class', 'stats');
 
-  // Total LOC
-  dl.append('dt').html('Total <abbr title="Lines of code">LOC</abbr>');
-  dl.append('dd').text(data.length);
-
-  // Total commits
-  dl.append('dt').text('Total commits');
+  // Commits
+  dl.append('dt').text('Commits');
   dl.append('dd').text(commits.length);
 
-  // Number of files
+  // Files
   const numFiles = d3.group(data, (d) => d.file).size;
   dl.append('dt').text('Files');
   dl.append('dd').text(numFiles);
 
-  // Maximum file length
+  // Total LOC
+  dl.append('dt').html('Total <abbr title="Lines of code">LOC</abbr>');
+  dl.append('dd').text(data.length);
+
+  // Max depth
+  const maxDepth = d3.max(data, (d) => d.depth);
+  dl.append('dt').text('Max depth');
+  dl.append('dd').text(maxDepth);
+
+  // Longest line (characters)
+  const longestLine = d3.max(data, (d) => d.length);
+  dl.append('dt').text('Longest line');
+  dl.append('dd').text(longestLine);
+
+  // Max lines in a single file
   const fileLengths = d3.rollups(
     data,
     (v) => d3.max(v, (d) => d.line),
     (d) => d.file,
   );
-  const maxFileLength = d3.max(fileLengths, (d) => d[1]);
-  dl.append('dt').text('Longest file (lines)');
-  dl.append('dd').text(maxFileLength);
-
-  // Average file length
-  const avgFileLength = d3.mean(fileLengths, (d) => d[1]);
-  dl.append('dt').text('Avg file length');
-  dl.append('dd').text(avgFileLength.toFixed(1));
-
-  // Average line length
-  const avgLineLength = d3.mean(data, (d) => d.length);
-  dl.append('dt').text('Avg line length');
-  dl.append('dd').text(avgLineLength.toFixed(1));
-
-  // Maximum depth
-  const maxDepth = d3.max(data, (d) => d.depth);
-  dl.append('dt').text('Max depth');
-  dl.append('dd').text(maxDepth);
-
-  // Time of day with most work
-  const workByPeriod = d3.rollups(
-    data,
-    (v) => v.length,
-    (d) =>
-      new Date(d.datetime).toLocaleString('en', { dayPeriod: 'short' }),
-  );
-  const maxPeriod = d3.greatest(workByPeriod, (d) => d[1])?.[0];
-  dl.append('dt').text('Most active period');
-  dl.append('dd').text(maxPeriod);
+  const maxLines = d3.max(fileLengths, (d) => d[1]);
+  dl.append('dt').text('Max lines');
+  dl.append('dd').text(maxLines);
 }
 
 function renderTooltipContent(commit) {
@@ -180,8 +164,8 @@ function renderLanguageBreakdown(selection) {
     const formatted = d3.format('.1~%')(proportion);
 
     container.innerHTML += `
-      <dt>${language}</dt>
-      <dd>${count} lines (${formatted})</dd>
+      <dt>${language.toUpperCase()}</dt>
+      <dd><span class="lines">${count} lines</span><span class="pct">(${formatted})</span></dd>
     `;
   }
 }
