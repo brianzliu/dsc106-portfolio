@@ -337,12 +337,7 @@ function updateScatterPlot(data, commits) {
 
 
 
-
-
-
-
-
-
+// slider to filter scatter plot by time range
 const data = await loadData();
 commits = processCommits(data);
 
@@ -365,6 +360,43 @@ let commitMaxTime = timeScale.invert(commitProgress);
 const commitProgressInput = document.getElementById('commit-progress');
 const commitTimeOutput = document.getElementById('commit-time');
 
+function updateFileDisplay(filteredCommits) {
+  // unit visualization for files
+  let lines = filteredCommits.flatMap((d) => d.lines);
+  let files = d3
+    .groups(lines, (d) => d.file)
+    .map(([name, lines]) => {
+      return { name, lines };
+    });
+
+  let filesContainer = d3
+    .select('#files')
+    .selectAll('div')
+    .data(files, (d) => d.name)
+    .join(
+      // This code only runs when the div is initially rendered
+      (enter) =>
+        enter.append('div').call((div) => {
+          const dt = div.append('dt');
+          dt.append('code');
+          dt.append('small');
+          div.append('dd');
+        }),
+    );
+
+  // Update file name and line count (in the <small> inside <dt>)
+  filesContainer.select('dt > code').text((d) => d.name);
+  filesContainer.select('dt > small').text((d) => `${d.lines.length} lines`);
+
+  // Append one div per line inside <dd>
+  filesContainer
+    .select('dd')
+    .selectAll('div')
+    .data((d) => d.lines)
+    .join('div')
+    .attr('class', 'loc');
+}
+
 function onTimeSliderChange() {
   commitProgress = Number(commitProgressInput.value);
   commitMaxTime = timeScale.invert(commitProgress);
@@ -376,8 +408,11 @@ function onTimeSliderChange() {
   filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
 
   updateScatterPlot(data, filteredCommits);
+  updateFileDisplay(filteredCommits);
 }
 
 commitProgressInput.addEventListener('input', onTimeSliderChange);
 onTimeSliderChange();
+
+
 
