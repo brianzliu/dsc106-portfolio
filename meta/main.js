@@ -1,4 +1,5 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
 
 let xScale;
 let yScale;
@@ -367,7 +368,8 @@ function updateFileDisplay(filteredCommits) {
     .groups(lines, (d) => d.file)
     .map(([name, lines]) => {
       return { name, lines };
-    });
+    })
+    .sort((a, b) => b.lines.length - a.lines.length);
 
   let filesContainer = d3
     .select('#files')
@@ -388,13 +390,16 @@ function updateFileDisplay(filteredCommits) {
   filesContainer.select('dt > code').text((d) => d.name);
   filesContainer.select('dt > small').text((d) => `${d.lines.length} lines`);
 
+  let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
   // Append one div per line inside <dd>
   filesContainer
     .select('dd')
     .selectAll('div')
     .data((d) => d.lines)
     .join('div')
-    .attr('class', 'loc');
+    .attr('class', 'loc')
+    .attr('style', (d) => `--color: ${colors(d.type)}`);
 }
 
 function onTimeSliderChange() {
@@ -416,3 +421,39 @@ onTimeSliderChange();
 
 
 
+d3.select('#scatter-story')
+  .selectAll('.step')
+  .data(commits)
+  .join('div')
+  .attr('class', 'step')
+  .html(
+    (d, i) => `
+		On ${d.datetime.toLocaleString('en', {
+      dateStyle: 'full',
+      timeStyle: 'short',
+    })},
+		I made <a href="${d.url}" target="_blank">${
+      i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
+    }</a>.
+		I edited ${d.totalLines} lines across ${
+      d3.rollups(
+        d.lines,
+        (D) => D.length,
+        (d) => d.file,
+      ).length
+    } files.
+		Then I looked over all I had made, and I saw that it was very good.
+	`,
+  );
+
+function onStepEnter(response) {
+  console.log(response);
+}
+
+const scroller = scrollama();
+scroller
+  .setup({
+    container: '#scrolly-1',
+    step: '#scrolly-1 .step',
+  })
+  .onStepEnter(onStepEnter);
