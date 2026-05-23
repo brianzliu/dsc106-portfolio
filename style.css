@@ -465,6 +465,10 @@ dl.info[hidden]:not(:hover, :focus-within) {
   }
 }
 
+#scrolly-2 {
+  flex-direction: row-reverse;
+}
+
 #scatter-story,
 #files-story {
   position: relative;
@@ -476,9 +480,13 @@ dl.info[hidden]:not(:hover, :focus-within) {
   top: 0;
   left: 0;
   bottom: auto;
+}
+
+#scatter-plot {
   height: 50vh;
 }
 
 #files-plot {
+  max-height: 90vh;
   overflow-y: auto;
 }
