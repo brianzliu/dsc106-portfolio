@@ -348,6 +348,12 @@ renderScatterPlot(data, commits);
 let filteredCommits = commits;
 let commitMaxTime = d3.max(commits, (d) => d.datetime);
 
+// Build a stable type→color mapping from all known line types
+const allLineTypes = Array.from(
+  new Set(commits.flatMap((c) => c.lines.map((l) => l.type))),
+).sort();
+const colors = d3.scaleOrdinal(allLineTypes, d3.schemeTableau10);
+
 function updateFileDisplay(filteredCommits) {
   // unit visualization for files
   let lines = filteredCommits.flatMap((d) => d.lines);
@@ -376,8 +382,6 @@ function updateFileDisplay(filteredCommits) {
   // Update file name and line count (in the <small> inside <dt>)
   filesContainer.select('dt > code').text((d) => d.name);
   filesContainer.select('dt > small').text((d) => `${d.lines.length} lines`);
-
-  let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
   // Append one div per line inside <dd>
   filesContainer
