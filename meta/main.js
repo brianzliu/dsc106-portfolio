@@ -45,7 +45,8 @@ function processCommits(data) {
       });
 
       return ret;
-    });
+    })
+    .sort((a, b) => a.datetime - b.datetime);
 }
 
 function renderCommitInfo(data, commits) {
@@ -338,28 +339,14 @@ function updateScatterPlot(data, commits) {
 
 
 
-// slider to filter scatter plot by time range
 const data = await loadData();
 commits = processCommits(data);
 
 renderCommitInfo(data, commits);
 renderScatterPlot(data, commits);
 
-
-let commitProgress = 100;
-let filteredCommits = commits
-
-let timeScale = d3
-  .scaleTime()
-  .domain([
-    d3.min(commits, (d) => d.datetime),
-    d3.max(commits, (d) => d.datetime),
-  ])
-  .range([0, 100]);
-let commitMaxTime = timeScale.invert(commitProgress);
-
-const commitProgressInput = document.getElementById('commit-progress');
-const commitTimeOutput = document.getElementById('commit-time');
+let filteredCommits = commits;
+let commitMaxTime = d3.max(commits, (d) => d.datetime);
 
 function updateFileDisplay(filteredCommits) {
   // unit visualization for files
@@ -402,58 +389,68 @@ function updateFileDisplay(filteredCommits) {
     .attr('style', (d) => `--color: ${colors(d.type)}`);
 }
 
-function onTimeSliderChange() {
-  commitProgress = Number(commitProgressInput.value);
-  commitMaxTime = timeScale.invert(commitProgress);
-  commitTimeOutput.textContent = commitMaxTime.toLocaleString('en', {
-    dateStyle: 'long',
+// Initial render with all commits
+updateFileDisplay(filteredCommits);
+
+const stepHtml = (d, i) => `
+  On ${d.datetime.toLocaleString('en', {
+    dateStyle: 'full',
     timeStyle: 'short',
-  });
-
-  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
-
-  updateScatterPlot(data, filteredCommits);
-  updateFileDisplay(filteredCommits);
-}
-
-commitProgressInput.addEventListener('input', onTimeSliderChange);
-onTimeSliderChange();
-
-
+  })},
+  I made <a href="${d.url}" target="_blank">${
+    i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
+  }</a>.
+  I edited ${d.totalLines} lines across ${
+    d3.rollups(
+      d.lines,
+      (D) => D.length,
+      (d) => d.file,
+    ).length
+  } files.
+  Then I looked over all I had made, and I saw that it was very good.
+`;
 
 d3.select('#scatter-story')
   .selectAll('.step')
   .data(commits)
   .join('div')
   .attr('class', 'step')
-  .html(
-    (d, i) => `
-		On ${d.datetime.toLocaleString('en', {
-      dateStyle: 'full',
-      timeStyle: 'short',
-    })},
-		I made <a href="${d.url}" target="_blank">${
-      i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
-    }</a>.
-		I edited ${d.totalLines} lines across ${
-      d3.rollups(
-        d.lines,
-        (D) => D.length,
-        (d) => d.file,
-      ).length
-    } files.
-		Then I looked over all I had made, and I saw that it was very good.
-	`,
-  );
+  .html(stepHtml);
 
-function onStepEnter(response) {
-  console.log(response);
+d3.select('#files-story')
+  .selectAll('.step')
+  .data(commits)
+  .join('div')
+  .attr('class', 'step')
+  .html(stepHtml);
+
+function filterCommitsUpTo(commit) {
+  commitMaxTime = commit.datetime;
+  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
 }
 
-const scroller = scrollama();
-scroller
+function onScatterStepEnter(response) {
+  filterCommitsUpTo(response.element.__data__);
+  updateScatterPlot(data, filteredCommits);
+}
+
+function onFilesStepEnter(response) {
+  filterCommitsUpTo(response.element.__data__);
+  updateFileDisplay(filteredCommits);
+}
+
+const scatterScroller = scrollama();
+scatterScroller
   .setup({
     container: '#scrolly-1',
     step: '#scrolly-1 .step',
   })
-  .onStepEnter(onStepEnter);
+  .onStepEnter(onScatterStepEnter);
+
+const filesScroller = scrollama();
+filesScroller
+  .setup({
+    container: '#scrolly-2',
+    step: '#scrolly-2 .step',
+  })
+  .onStepEnter(onFilesStepEnter);

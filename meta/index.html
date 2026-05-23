@@ -15,19 +15,7 @@
 
     <p>This page includes stats about the code of this website.</p>
 
-    <div id="slider-container">
-        <label>
-            Show commits until:
-            <input type="range" id="commit-progress" min="0" max="100" value="100">
-            <time id="commit-time"></time>
-        </label>
-    </div>
-
-    
-
     <div id="stats"></div>
-  
-
 
     <h2>Commits by time of day</h2>
     <div id="scrolly-1">
@@ -57,10 +45,14 @@
         </dl>
       </div>
     </div>
-    
 
-
-    <dl id="files"></dl>
+    <h2>Files in the codebase</h2>
+    <div id="scrolly-2">
+      <div id="files-story"></div>
+      <div id="files-plot">
+        <dl id="files"></dl>
+      </div>
+    </div>
 </body>
 
 </html>

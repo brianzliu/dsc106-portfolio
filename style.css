@@ -246,25 +246,6 @@ path {
 
 /* ===== Meta page styles ===== */
 
-#slider-container label {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5em;
-  margin-block: 1em;
-}
-
-#slider-container label input[type="range"] {
-  flex: 1;
-}
-
-#slider-container label time {
-  flex-basis: 100%;
-  text-align: right;
-  margin-left: auto;
-}
-
 #stats .stats {
   display: grid;
   grid-auto-flow: column;
@@ -473,7 +454,8 @@ dl.info[hidden]:not(:hover, :focus-within) {
 }
 
 
-#scrolly-1 {
+#scrolly-1,
+#scrolly-2 {
   position: relative;
   display: flex;
   gap: 1rem;
@@ -483,14 +465,20 @@ dl.info[hidden]:not(:hover, :focus-within) {
   }
 }
 
-#scatter-story {
+#scatter-story,
+#files-story {
   position: relative;
 }
 
-#scatter-plot {
+#scatter-plot,
+#files-plot {
   position: sticky;
   top: 0;
   left: 0;
   bottom: auto;
   height: 50vh;
+}
+
+#files-plot {
+  overflow-y: auto;
 }
